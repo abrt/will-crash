@@ -6,5 +6,5 @@ AM_PATH_PYTHON
 AC_PROG_CC
 AC_CHECK_HEADERS([stdlib.h])
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
