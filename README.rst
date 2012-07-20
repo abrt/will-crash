@@ -8,7 +8,7 @@ Introduction
 
 The main purpose of this project is to provide sample
 executables for testing crash/exception handling tools
-like `ABRT <https://fedorahosted.org/abrt/`_.
+like `ABRT <https://fedorahosted.org/abrt/>`_.
 
 More examples are welcome.
 
