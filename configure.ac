@@ -1,4 +1,4 @@
-AC_INIT([will-crash],[0.1],[rmarko@redhat.com])
+AC_INIT([will-crash],[0.2],[rmarko@redhat.com])
 
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 
