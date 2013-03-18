@@ -1,3 +1,3 @@
 SUBDIRS = src
 
-EXTRA_DIST = LICENSE README.rst
+EXTRA_DIST = LICENSE README.rst autogen.sh
