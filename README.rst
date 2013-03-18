@@ -14,7 +14,7 @@ More examples are welcome.
 
 Installation
 -------------
-- autoreconf --install
+- ./autogen.sh
 - ./configure
 - make
 - make install
