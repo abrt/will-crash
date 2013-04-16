@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# exit on any failure
+set -e
+
+if [ ! -d "/lib/modules/`uname -r`/build" ]; then
+    echo "Kernel build tree not found"
+    echo "Please install the kernel-devel package"
+    exit 1
+fi
+
+# look in the current directory first
+SRCDIR="`pwd`/will_oops_kmod"
+if [ ! -d "$SRCDIR" ]; then
+    SRCDIR=@KMODSRC@
+fi
+
+TMPDIR=`mktemp -d /tmp/will_oops.XXXXXXXXXX`
+trap "rm -rf $TMPDIR" EXIT
+
+cd $TMPDIR
+cp $SRCDIR/{will_oops.c,Makefile} .
+
+echo "Building kernel module ..."
+make
+
+echo "Loading the module ..."
+insmod will_oops.ko
