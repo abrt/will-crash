@@ -1,8 +1,9 @@
-bin_PROGRAMS = will_segfault will_abort
+bin_PROGRAMS = will_segfault will_abort will_cpp_segfault
 lib_LTLIBRARIES = libwilljavasegfault.la
 
 will_segfault_SOURCES = will_segfault.c
 will_abort_SOURCES = will_abort.c
+will_cpp_segfault_SOURCES = will_cpp_segfault.cc
 
 WillRaiseSigSegvdir = $(JAVADIR)
 WillRaiseSigSegv_JAVA = WillRaiseSigSegv.java
