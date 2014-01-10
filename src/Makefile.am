@@ -1,7 +1,9 @@
 bin_PROGRAMS = will_segfault will_abort will_cpp_segfault
-lib_LTLIBRARIES = libwilljavasegfault.la
+lib_LTLIBRARIES = libwilljavasegfault.la libwillcrash.la
 
 will_segfault_SOURCES = will_segfault.c
+will_segfault_LDADD = libwillcrash.la
+will_segfault_CFLAGS = -fno-optimize-sibling-calls
 will_abort_SOURCES = will_abort.c
 will_cpp_segfault_SOURCES = will_cpp_segfault.cc
 
@@ -13,6 +15,8 @@ kmod_DATA = will_oops_kmod/Makefile will_oops_kmod/will_oops.c
 
 libwilljavasegfault_la_SOURCES = will_java_segfault.c
 libwilljavasegfault_la_CPPFLAGS = -I$(javahome)/include -I$(javahome)/include/linux
+
+libwillcrash_la_SOURCES = libwillcrash.c
 
 bin_SCRIPTS = will_python_raise will_python3_raise will_ruby_raise will_python_sigsegv will_java_segfault will_oops
 
@@ -39,4 +43,5 @@ EXTRA_DIST = \
 	will_java_segfault.in \
 	WillRaiseSigSegv.java \
 	will_oops.in \
-	$(kmod_DATA)
+	$(kmod_DATA) \
+	libwillcrash.h
