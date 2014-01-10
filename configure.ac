@@ -13,7 +13,7 @@ AC_PROG_CXX
 
 AC_CHECK_HEADERS([stdlib.h])
 
-AC_CONFIG_FILES([Makefile src/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile will-crash.spec])
 
 AC_ARG_WITH([javahome],
         AS_HELP_STRING([--with-javahome=JAVA SDK Home],
