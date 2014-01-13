@@ -16,8 +16,9 @@ Requires:       ruby
 Requires:       python
 Requires:       java-1.7.0-openjdk
 
-# Don't require python3 for el6
-%if 0%{?rhel} != 6
+# Don't require python3 for el6/el7
+%if 0%{?rhel}
+%else
 Requires:       python3
 %endif
 
