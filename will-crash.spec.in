@@ -70,7 +70,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
-* Fri May  2 2013 Jiri Moskovcak <jmoskovc@redhat.com> 0.5-1
+* Fri May  3 2013 Jiri Moskovcak <jmoskovc@redhat.com> 0.5-1
 - new upstream release - 0.5
 - added will_oops
 
