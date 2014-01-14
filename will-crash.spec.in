@@ -16,8 +16,9 @@ Requires:       ruby
 Requires:       python
 Requires:       java-1.7.0-openjdk
 
-# Don't require python3 for el6/el7
+# Don't require python3 for el6/el7, exclude ppc64 due to missing java
 %if 0%{?rhel}
+ExcludeArch:    ppc64
 %else
 Requires:       python3
 %endif
