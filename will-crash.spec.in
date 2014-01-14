@@ -1,0 +1,91 @@
+Name:           will-crash
+Version:        @PACKAGE_VERSION@
+Release:        1%{?dist}
+Summary:        Set of crashing executables written in various languages
+
+Group:          Development/Tools
+License:        GPLv3
+URL:            http://github.com/sorki/will-crash
+Source0:        http://sources.48.io/will-crash/%{name}-%{version}.tar.gz
+
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  java-1.7.0-openjdk-devel
+BuildRequires:  libtool
+Requires:       ruby
+Requires:       python
+Requires:       java-1.7.0-openjdk
+
+# Don't require python3 for el6/el7
+%if 0%{?rhel}
+%else
+Requires:       python3
+%endif
+
+%description
+The main purpose of this project is to provide sample
+executables for testing crash/exception handling tools
+like ABRT.
+
+%prep
+%setup -q
+
+%build
+./autogen.sh
+%configure
+make %{?_smp_mflags}
+
+%install
+mkdir -p $RPM_BUILD_ROOT/%{_datadir}/java
+
+make install DESTDIR=%{buildroot}
+# no devel package -> no *.so links to versioned libraries needed
+find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
+
+%files
+%doc README.rst
+%doc LICENSE
+%doc AUTHORS
+%{_bindir}/will_segfault
+%{_bindir}/will_abort
+%{_bindir}/will_python_raise
+%{_bindir}/will_python_sigsegv
+%{_bindir}/will_python3_raise
+%{_bindir}/will_ruby_raise
+%{_bindir}/will_java_segfault
+%{_bindir}/will_cpp_segfault
+%{_bindir}/will_oops
+%{_datadir}/java/*
+%{_datadir}/will-crash/*
+%{_libdir}/libwillcrash.so*
+# Java runtime requires unversioned library
+%{_libdir}/libwilljavasegfault.so*
+
+%changelog
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.5-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Fri May  2 2013 Jiri Moskovcak <jmoskovc@redhat.com> 0.5-1
+- new upstream release - 0.5
+- added will_oops
+
+* Mon Mar 18 2013 Richard Marko  <rmarko@fedoraproject.org> - 0.4-1
+- Version bump, added will_java_segfault
+
+* Thu Feb 21 2013 Richard Marko <rmarko@fedoraproject.org> - 0.3-1
+- Version bump
+
+* Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
+* Wed Jul 25 2012 Richard Marko <rmarko@redhat.com> - 0.2-2
+- Don't require python3 for el6
+
+* Wed Jul 25 2012 Richard Marko <rmarko@redhat.com> - 0.2-1
+- Version bump
+
+* Mon Jul 23 2012 Richard Marko <rmarko@redhat.com> - 0.1-2
+- Added missing automake build requirement
+
+* Fri Jul 20 2012 Richard Marko <rmarko@redhat.com> - 0.1-1
+- Initial packaging attempt
