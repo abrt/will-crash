@@ -62,6 +62,11 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
+* Tue Jan 14 2013 Richard Marko  <rmarko@fedoraproject.org> - 0.6-1
+- Version bump
+- added will_cpp_segfault
+- reworked will_segfault to produce more stack frames
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 

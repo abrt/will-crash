@@ -1,4 +1,4 @@
-AC_INIT([will-crash],[0.5],[rmarko@redhat.com])
+AC_INIT([will-crash],[0.6],[rmarko@redhat.com])
 
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
