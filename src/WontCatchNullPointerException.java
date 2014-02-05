@@ -1,6 +1,7 @@
-/* This class produces uncaught NullPointerException
- * 
- * @author Jakub Filak <jfilak@redhat.com>
+/**
+ * This class produces uncaught NullPointerException
+ *
+ * @author Jakub Filak &lt;jfilak@redhat.com&gt;
  */
 public final class WontCatchNullPointerException
 {
@@ -10,7 +11,7 @@ public final class WontCatchNullPointerException
 
     /* Initializes a new instance
      */
-    private WontCatchNullPointerException(int height) {
+    public WontCatchNullPointerException(int height) {
         stack_height = height;
     }
 

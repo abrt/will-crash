@@ -1,4 +1,4 @@
 #!/bin/sh
-CLASSPATH=@JAVADIR@:$CLASSPATH
+CLASSPATH=@JAR@
 export CLASSPATH
 exec java WontCatchNullPointerException
