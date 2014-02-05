@@ -55,6 +55,8 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_bindir}/will_python3_raise
 %{_bindir}/will_ruby_raise
 %{_bindir}/will_java_segfault
+%{_bindir}/will_java_throw
+%{_bindir}/will_java_throw_remote
 %{_bindir}/will_cpp_segfault
 %{_bindir}/will_oops
 %{_datadir}/java/*
@@ -64,7 +66,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
-* Tue Jan 14 2013 Richard Marko  <rmarko@fedoraproject.org> - 0.6-1
+* Tue Jan 14 2014 Richard Marko  <rmarko@fedoraproject.org> - 0.6-1
 - Version bump
 - added will_cpp_segfault
 - reworked will_segfault to produce more stack frames

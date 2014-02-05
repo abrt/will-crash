@@ -10,7 +10,7 @@ will_cpp_segfault_SOURCES = will_cpp_segfault.cc
 WillJavaClassesdir = $(JAVADIR)
 WillJavaClasses_DATA = WillRaiseSigSegv.class
 
-WillJavaJarsdir = $(JAVADIR)/jar
+WillJavaJarsdir = $(JARDIR)
 WillJavaJars_DATA = willremoteloader.jar willuncaught.jar
 
 kmoddir = $(datarootdir)/@PACKAGE@/will_oops_kmod/
@@ -46,8 +46,8 @@ will_java_throw_remote: will_java_throw_remote.in
 .java.class:
 	$(JAVAC) -Xlint:unchecked $<
 
-willremoteloader.jar: WontCatchRemoteException.class JarGetter.class
-	$(JAR) $(JARFLAGS) $@ $^ && rm -rf $^
+willremoteloader.jar: WontCatchRemoteException.class
+	$(JAR) $(JARFLAGS) $@ $^ JarGetter.class && rm -rf $^ JarGetter.class
 
 willuncaught.jar: WontCatchNullPointerException.class
 	$(JAR) $(JARFLAGS) $@ $^ && rm -rf $^
@@ -74,6 +74,6 @@ EXTRA_DIST = \
 	$(kmod_DATA) \
 	libwillcrash.h \
 	will_java_throw.in \
-	willuncaught.jar \
+	WontCatchNullPointerException.java \
 	will_java_throw_remote.in \
-	willremoteloader.jar
+	WontCatchRemoteException.java
