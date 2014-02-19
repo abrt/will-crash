@@ -34,9 +34,14 @@ AC_ARG_WITH([javadir],
             [Directory for java files]),
             [], [with_javadir=${datadir}/java])
 AC_SUBST([JAVADIR], [$with_javadir])
+AC_SUBST([JARDIR], [$with_javadir/willcrash])
 
 AC_MSG_NOTICE([Directory for java files is $JAVADIR])
 
 AC_PATH_PROGS(JAVAC,javac,,[$javahome/bin])
+AC_PATH_PROGS(JAR,jar,,[$javahome/bin])
+
+JARFLAGS=cvf
+AC_SUBST(JARFLAGS)
 
 AC_OUTPUT
