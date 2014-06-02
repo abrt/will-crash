@@ -66,6 +66,11 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
+* Mon Jun 2 2014 Richard Marko  <rmarko@fedoraproject.org> - 0.7-1
+- Version bump
+- added will_abort --random
+- added will_java_throw_remote
+
 * Tue Jan 14 2014 Richard Marko  <rmarko@fedoraproject.org> - 0.6-1
 - Version bump
 - added will_cpp_segfault
