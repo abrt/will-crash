@@ -10,12 +10,13 @@ Source0:        http://sources.48.io/will-crash/%{name}-%{version}.tar.gz
 
 BuildRequires:  autoconf
 BuildRequires:  automake
-BuildRequires:  java-1.7.0-openjdk-devel
+BuildRequires:  java-devel
 BuildRequires:  libtool
 BuildRequires:  gcc-c++
 Requires:       ruby
 Requires:       python
-Requires:       java-1.7.0-openjdk
+Requires:       java-headless
+Requires:       jpackage-utils
 
 # Don't require python3 for el6/el7, exclude ppc64 due to missing java
 %if 0%{?rhel}
