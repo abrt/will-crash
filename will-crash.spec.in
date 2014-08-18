@@ -1,6 +1,6 @@
 Name:           will-crash
 Version:        @PACKAGE_VERSION@
-Release:        1%{?dist}
+Release:        4%{?dist}
 Summary:        Set of crashing executables written in various languages
 
 Group:          Development/Tools
@@ -67,6 +67,15 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
+* Mon Aug 18 2014 Richard Marko <rmarko@fedoraproject.org> - 0.7-4
+- support OpenJDK8
+
+* Mon Aug 18 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Mon Jun 2 2014 Richard Marko  <rmarko@fedoraproject.org> - 0.7-1
 - Version bump
 - added will_abort --random
