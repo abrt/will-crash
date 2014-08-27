@@ -1,4 +1,4 @@
-bin_PROGRAMS = will_segfault will_abort will_cpp_segfault
+bin_PROGRAMS = will_segfault will_abort will_cpp_segfault will_stackoverflow
 lib_LTLIBRARIES = libwilljavasegfault.la libwillcrash.la
 
 will_segfault_SOURCES = will_segfault.c
@@ -6,6 +6,8 @@ will_segfault_LDADD = libwillcrash.la
 will_segfault_CFLAGS = -fno-optimize-sibling-calls
 will_abort_SOURCES = will_abort.c
 will_cpp_segfault_SOURCES = will_cpp_segfault.cc
+will_stackoverflow_SOURCES = will_stackoverflow.c
+will_stackoverflow_CFLAGS = -fno-optimize-sibling-calls -fno-inline
 
 WillJavaClassesdir = $(JAVADIR)
 WillJavaClasses_DATA = WillRaiseSigSegv.class
