@@ -1,6 +1,6 @@
 Name:           will-crash
 Version:        @PACKAGE_VERSION@
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Set of crashing executables written in various languages
 
 Group:          Development/Tools
@@ -59,6 +59,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_bindir}/will_java_throw
 %{_bindir}/will_java_throw_remote
 %{_bindir}/will_cpp_segfault
+%{_bindir}/will_stackoverflow
 %{_bindir}/will_oops
 %{_datadir}/java/*
 %{_datadir}/will-crash/*
@@ -67,6 +68,9 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
+* Wed Aug 27 2014 Martin Milata <mmilata@redhat.com> - 0.7-5
+- added will_stackoverflow
+
 * Mon Aug 18 2014 Richard Marko <rmarko@fedoraproject.org> - 0.7-4
 - support OpenJDK8
 
