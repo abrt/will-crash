@@ -1,6 +1,6 @@
 Name:           will-crash
 Version:        @PACKAGE_VERSION@
-Release:        5%{?dist}
+Release:        1%{?dist}
 Summary:        Set of crashing executables written in various languages
 
 Group:          Development/Tools
@@ -68,6 +68,9 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
+* Mon Sep 10 2014 Richard Marko <rmarko@fedoraproject.org> - 0.8-1
+- add will_segfault --break-link-map
+
 * Wed Aug 27 2014 Martin Milata <mmilata@redhat.com> - 0.7-5
 - added will_stackoverflow
 
