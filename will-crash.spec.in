@@ -68,7 +68,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
-* Mon Sep 10 2014 Richard Marko <rmarko@fedoraproject.org> - 0.8-1
+* Wed Sep 10 2014 Richard Marko <rmarko@fedoraproject.org> - 0.8-1
 - add will_segfault --break-link-map
 
 * Wed Aug 27 2014 Martin Milata <mmilata@redhat.com> - 0.7-5
