@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#include <link.h>
+
 #include "libwillcrash.h"
 
 static void crash(int *p) __attribute__ ((noinline));
@@ -64,7 +66,20 @@ void recursive(int i)
         recursive(i-1);
 }
 
-int main() {
+static void break_link_map()
+{
+    puts("Overwriting link_map.");
+    _r_debug.r_map->l_next = 0x1337BEEF;
+    _r_debug.r_map->l_name = "invalid";
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc >= 2 && 0 == strcmp(argv[1], "--break-link-map"))
+    {
+        break_link_map();
+    }
+
     recursive(2);
     return 0;
 }
