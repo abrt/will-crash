@@ -1,0 +1,4 @@
+#!/bin/sh
+CLASSPATH=@JAR@
+export CLASSPATH
+exec java WontCatchSuppressedException

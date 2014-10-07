@@ -13,7 +13,7 @@ WillJavaClassesdir = $(JAVADIR)
 WillJavaClasses_DATA = WillRaiseSigSegv.class
 
 WillJavaJarsdir = $(JARDIR)
-WillJavaJars_DATA = willremoteloader.jar willuncaught.jar
+WillJavaJars_DATA = willremoteloader.jar willuncaught.jar willsuppressed.jar
 
 kmoddir = $(datarootdir)/@PACKAGE@/will_oops_kmod/
 kmod_DATA = will_oops_kmod/Makefile will_oops_kmod/will_oops.c
@@ -30,7 +30,8 @@ bin_SCRIPTS = will_python_raise \
 			  will_java_segfault \
 			  will_oops \
 			  will_java_throw \
-			  will_java_throw_remote
+			  will_java_throw_remote \
+			  will_java_throw_suppressed
 
 will_java_segfault: will_java_segfault.in
 	sed -e s,\@JAVADIR\@,\"$(JAVADIR)\",g \
@@ -45,6 +46,10 @@ will_java_throw_remote: will_java_throw_remote.in
 		-e s,\@JARUNCAUGHT\@,\"$(JARDIR)/willuncaught.jar\",g \
 		will_java_throw_remote.in >will_java_throw_remote && chmod +x will_java_throw_remote
 
+will_java_throw_suppressed: will_java_throw_suppressed.in
+	sed -e s,\@JAR\@,\"$(JARDIR)/willsuppressed.jar\",g \
+		will_java_throw_suppressed.in >will_java_throw_suppressed && chmod +x will_java_throw_suppressed
+
 .java.class:
 	$(JAVAC) -Xlint:unchecked $<
 
@@ -54,16 +59,19 @@ willremoteloader.jar: WontCatchRemoteException.class
 willuncaught.jar: WontCatchNullPointerException.class
 	$(JAR) $(JARFLAGS) $@ $^ && rm -rf $^
 
+willsuppressed.jar: WontCatchSuppressedException.class
+	$(JAR) $(JARFLAGS) $@ $^ && rm -rf $^
+
 will_oops: will_oops.in
 	sed -e s,\@KMODSRC\@,\"$(kmoddir)\",g \
 		will_oops.in >will_oops && chmod +x will_oops
 
-all-local: will_java_segfault will_oops will_java_throw will_java_throw_remote
+all-local: will_java_segfault will_oops will_java_throw will_java_throw_remote will_java_throw_suppressed
 
 clean-local: clean-local-check
 .PHONY: clean-local-check
 clean-local-check:
-	rm -rf will_java_segfault will_java_throw will_java_throw_remote *.class *.jar
+	rm -rf will_java_segfault will_java_throw will_java_throw_remote will_java_throw_suppressed *.class *.jar
 
 EXTRA_DIST = \
 	will_python_raise \
@@ -78,4 +86,6 @@ EXTRA_DIST = \
 	will_java_throw.in \
 	WontCatchNullPointerException.java \
 	will_java_throw_remote.in \
-	WontCatchRemoteException.java
+	WontCatchRemoteException.java \
+	will_java_throw_suppressed.in \
+	WontCatchSuppressedException.java

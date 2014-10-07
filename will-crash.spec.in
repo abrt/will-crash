@@ -15,7 +15,7 @@ BuildRequires:  libtool
 BuildRequires:  gcc-c++
 Requires:       ruby
 Requires:       python
-Requires:       java-headless
+Requires:       java-headless >= 1.7.0.0
 Requires:       jpackage-utils
 
 # Don't require python3 for el6/el7, exclude ppc64 due to missing java
@@ -58,6 +58,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_bindir}/will_java_segfault
 %{_bindir}/will_java_throw
 %{_bindir}/will_java_throw_remote
+%{_bindir}/will_java_throw_suppressed
 %{_bindir}/will_cpp_segfault
 %{_bindir}/will_stackoverflow
 %{_bindir}/will_oops
