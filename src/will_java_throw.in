@@ -1,4 +1,6 @@
 #!/bin/sh
-CLASSPATH=@JAR@
-export CLASSPATH
-exec java WontCatchNullPointerException
+MAIN_CLASS="WontCatchNullPointerException"
+export MAIN_CLASS
+. /usr/share/java-utils/java-functions
+set_classpath @JAR@
+run
