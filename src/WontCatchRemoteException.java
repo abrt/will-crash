@@ -80,10 +80,19 @@ public class WontCatchRemoteException {
         server.setExecutor(null); // creates a default executor
         server.start();
 
+        /* Download the jar in order to fully intialize the second thread.
+         * Since Java-1.8 HttpExchange.sendResponseHeaders() adds 'Date' header
+         * with a value formated according to the locale preferences. Getting
+         * the locale preferences leads to loading of some other class which
+         * results in a deadlock in URLClassLoader.
+         */
+        URL remoteJarUrl = new URL("http://localhost:54321/JarTest.jar");
+        remoteJarUrl.openStream().close();
+
         try {
             Method method = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
             method.setAccessible(true);
-            method.invoke(ClassLoader.getSystemClassLoader(), new Object[]{new URL("http://localhost:54321/willuncaught.jar")});
+            method.invoke(ClassLoader.getSystemClassLoader(), new Object[]{remoteJarUrl});
 
             testClassInstance = Class.forName(testClassName);
 
