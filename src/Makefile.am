@@ -38,16 +38,16 @@ will_java_segfault: will_java_segfault.in
 		will_java_segfault.in >will_java_segfault && chmod +x will_java_segfault
 
 will_java_throw: will_java_throw.in
-	sed -e s,\@JAR\@,\"$(JARDIR)/willuncaught.jar\",g \
+	sed -e s,\@JAR\@,\"`basename $(JARDIR)`/willuncaught.jar\",g \
 		will_java_throw.in >will_java_throw && chmod +x will_java_throw
 
 will_java_throw_remote: will_java_throw_remote.in
-	sed -e s,\@JAR\@,\"$(JARDIR)/willremoteloader.jar\",g \
+	sed -e s,\@JAR\@,\"`basename $(JARDIR)`/willremoteloader.jar\",g \
 		-e s,\@JARUNCAUGHT\@,\"$(JARDIR)/willuncaught.jar\",g \
 		will_java_throw_remote.in >will_java_throw_remote && chmod +x will_java_throw_remote
 
 will_java_throw_suppressed: will_java_throw_suppressed.in
-	sed -e s,\@JAR\@,\"$(JARDIR)/willsuppressed.jar\",g \
+	sed -e s,\@JAR\@,\"`basename $(JARDIR)`/willsuppressed.jar\",g \
 		will_java_throw_suppressed.in >will_java_throw_suppressed && chmod +x will_java_throw_suppressed
 
 .java.class:

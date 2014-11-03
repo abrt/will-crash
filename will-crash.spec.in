@@ -1,6 +1,6 @@
 Name:           will-crash
 Version:        @PACKAGE_VERSION@
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Set of crashing executables written in various languages
 
 Group:          Development/Tools
@@ -16,7 +16,7 @@ BuildRequires:  gcc-c++
 Requires:       ruby
 Requires:       python
 Requires:       java-headless >= 1.7.0.0
-Requires:       jpackage-utils
+Requires:       javapackages-tools
 
 # Don't require python3 for el6/el7, exclude ppc64 due to missing java
 %if 0%{?rhel}
@@ -69,6 +69,9 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
+* Thu Oct 30 2014 Jakub Filak <jfilak@redhat.com> - 0.8-2
+- port to javapackages-utils
+
 * Wed Sep 10 2014 Richard Marko <rmarko@fedoraproject.org> - 0.8-1
 - add will_segfault --break-link-map
 
