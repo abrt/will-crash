@@ -58,7 +58,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_bindir}/will_java_segfault
 %{_bindir}/will_java_throw
 %{_bindir}/will_java_throw_remote
-%{_bindir}/will_java_throw_suppressed
+@JAVA_SUPPORTS_SUPPRESSED_TRUE@%{_bindir}/will_java_throw_suppressed
 %{_bindir}/will_cpp_segfault
 %{_bindir}/will_stackoverflow
 %{_bindir}/will_oops

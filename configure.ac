@@ -41,9 +41,20 @@ AC_SUBST([JARDIR], [$with_javadir/willcrash])
 AC_MSG_NOTICE([Directory for java files is $JAVADIR])
 
 AC_PATH_PROGS(JAVAC,javac,,[$javahome/bin])
+AC_PATH_PROGS(JAVA,java,,[$javahome/bin])
 AC_PATH_PROGS(JAR,jar,,[$javahome/bin])
 
 JARFLAGS=cvf
 AC_SUBST(JARFLAGS)
+
+JAVA_VER=(`"$JAVA" -version 2>&1 | awk 'BEGIN { FS="[[\".]]" } /^.*java version "(.*)\.(.*)\.(.*)"/ { print $2, $3, $4 }'`)
+[echo "Java version ${JAVA_VER[@]}"]
+[if test ${JAVA_VER[0]} -gt 1 -o ${JAVA_VER[1]} -gt 6; then]
+    AM_CONDITIONAL(JAVA_SUPPORTS_SUPPRESSED, true)
+    [echo "Java supports Suppressed exceptions"]
+[else]
+    AM_CONDITIONAL(JAVA_SUPPORTS_SUPPRESSED, false)
+    [echo "Java does NOT support Suppressed exceptions"]
+[fi]
 
 AC_OUTPUT

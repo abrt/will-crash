@@ -13,7 +13,11 @@ WillJavaClassesdir = $(JAVADIR)
 WillJavaClasses_DATA = WillRaiseSigSegv.class
 
 WillJavaJarsdir = $(JARDIR)
-WillJavaJars_DATA = willremoteloader.jar willuncaught.jar willsuppressed.jar
+WillJavaJars_DATA = willremoteloader.jar willuncaught.jar
+
+if JAVA_SUPPORTS_SUPPRESSED
+WillJavaJars_DATA += willsuppressed.jar
+endif
 
 kmoddir = $(datarootdir)/@PACKAGE@/will_oops_kmod/
 kmod_DATA = will_oops_kmod/Makefile will_oops_kmod/will_oops.c
@@ -30,8 +34,11 @@ bin_SCRIPTS = will_python_raise \
 			  will_java_segfault \
 			  will_oops \
 			  will_java_throw \
-			  will_java_throw_remote \
-			  will_java_throw_suppressed
+			  will_java_throw_remote
+
+if JAVA_SUPPORTS_SUPPRESSED
+bin_SCRIPTS += will_java_throw_suppressed
+endif
 
 will_java_segfault: will_java_segfault.in
 	sed -e s,\@JAVADIR\@,\"$(JAVADIR)\",g \
@@ -46,9 +53,11 @@ will_java_throw_remote: will_java_throw_remote.in
 		-e s,\@JARUNCAUGHT\@,\"$(JARDIR)/willuncaught.jar\",g \
 		will_java_throw_remote.in >will_java_throw_remote && chmod +x will_java_throw_remote
 
+if JAVA_SUPPORTS_SUPPRESSED
 will_java_throw_suppressed: will_java_throw_suppressed.in
 	sed -e s,\@JAR\@,\"`basename $(JARDIR)`/willsuppressed.jar\",g \
 		will_java_throw_suppressed.in >will_java_throw_suppressed && chmod +x will_java_throw_suppressed
+endif
 
 .java.class:
 	$(JAVAC) -Xlint:unchecked $<
@@ -59,19 +68,27 @@ willremoteloader.jar: WontCatchRemoteException.class
 willuncaught.jar: WontCatchNullPointerException.class
 	$(JAR) $(JARFLAGS) $@ $^ && rm -rf $^
 
+if JAVA_SUPPORTS_SUPPRESSED
 willsuppressed.jar: WontCatchSuppressedException.class
 	$(JAR) $(JARFLAGS) $@ $^ && rm -rf $^
+endif
 
 will_oops: will_oops.in
 	sed -e s,\@KMODSRC\@,\"$(kmoddir)\",g \
 		will_oops.in >will_oops && chmod +x will_oops
 
-all-local: will_java_segfault will_oops will_java_throw will_java_throw_remote will_java_throw_suppressed
+ALL_TARGETS=will_java_segfault will_oops will_java_throw will_java_throw_remote
+
+if JAVA_SUPPORTS_SUPPRESSED
+ALL_TARGETS += will_java_throw_suppressed
+endif
+
+all-local: $(ALL_TARGETS)
 
 clean-local: clean-local-check
 .PHONY: clean-local-check
 clean-local-check:
-	rm -rf will_java_segfault will_java_throw will_java_throw_remote will_java_throw_suppressed *.class *.jar
+	rm -rf $(ALL_TARGETS) *.class *.jar
 
 EXTRA_DIST = \
 	will_python_raise \
@@ -86,6 +103,9 @@ EXTRA_DIST = \
 	will_java_throw.in \
 	WontCatchNullPointerException.java \
 	will_java_throw_remote.in \
-	WontCatchRemoteException.java \
-	will_java_throw_suppressed.in \
-	WontCatchSuppressedException.java
+	WontCatchRemoteException.java
+
+if JAVA_SUPPORTS_SUPPRESSED
+EXTRA_DIST += will_java_throw_suppressed.in
+EXTRA_DIST += WontCatchSuppressedException.java
+endif
