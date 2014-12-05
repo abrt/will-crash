@@ -1,6 +1,6 @@
 Name:           will-crash
 Version:        @PACKAGE_VERSION@
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Set of crashing executables written in various languages
 
 Group:          Development/Tools
@@ -15,8 +15,13 @@ BuildRequires:  libtool
 BuildRequires:  gcc-c++
 Requires:       ruby
 Requires:       python
+%if 0%{?rhel} && 0%{?rhel} == 6
+Requires:       java-1.8.0-openjdk-headless
+Requires:       jpackage-utils
+%else
 Requires:       java-headless >= 1.7.0.0
 Requires:       javapackages-tools
+%endif
 
 # Don't require python3 for el6/el7, exclude ppc64 due to missing java
 %if 0%{?rhel}
@@ -58,7 +63,9 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_bindir}/will_java_segfault
 %{_bindir}/will_java_throw
 %{_bindir}/will_java_throw_remote
-@JAVA_SUPPORTS_SUPPRESSED_TRUE@%{_bindir}/will_java_throw_suppressed
+%if 0%{?rhel} && 0%{?rhel} > 6
+%{_bindir}/will_java_throw_suppressed
+%endif
 %{_bindir}/will_cpp_segfault
 %{_bindir}/will_stackoverflow
 %{_bindir}/will_oops
@@ -69,7 +76,13 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwilljavasegfault.so*
 
 %changelog
-* Thu Oct 30 2014 Jakub Filak <jfilak@redhat.com> - 0.8-2
+* Fri Dec 05 2014 Richard Marko <rmarko@fedoraproject.org> - 0.9-3
+- fix java deps for EL6
+
+* Mon Nov 24 2014 Richard Marko <rmarko@fedoraproject.org> - 0.9-2
+- fix will_java_throw_suppressed availability on RHEL6
+
+* Thu Oct 30 2014 Jakub Filak <jfilak@redhat.com> - 0.9-1
 - port to javapackages-utils
 
 * Wed Sep 10 2014 Richard Marko <rmarko@fedoraproject.org> - 0.8-1
