@@ -33,6 +33,13 @@ int v(char *s) { DISPATCH(s); } int w(char *s) { DISPATCH(s); } int x(char *s) {
 int y(char *s) { DISPATCH(s); }
 int z(char *s) { DISPATCH(s); }
 
+void print_help(void) {
+    fprintf(stderr, "Usage: will_abort [--random|--stack <string>]\n");
+    fprintf(stderr, "This program immediately abort()s.\n\n");
+    fprintf(stderr, " --random          Crash with random (unique) stack.\n");
+    fprintf(stderr, " --stack <string>  Crash with stack determined by <string>.\n\n");
+}
+
 int main(int argc, char *argv[]) {
     char arr[16];
     char *str;
@@ -45,9 +52,16 @@ int main(int argc, char *argv[]) {
             }
             arr[sizeof(arr)-1] = '\0';
             str = arr;
+        } else if (0 == strcmp(argv[1], "--help") || 0 == strcmp(argv[1], "-h")) {
+            print_help();
+            exit(EXIT_SUCCESS);
+        } else if (0 == strcmp(argv[1], "--stack") && argc > 2) {
+            str = argv[2];
         } else {
-            str = argv[1];
+            print_help();
+            exit(EXIT_FAILURE);
         }
+        printf("Using string: %s\n", str);
     } else {
         str = "pampelmuse";
     }
