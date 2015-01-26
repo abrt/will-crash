@@ -13,6 +13,7 @@ BuildRequires:  automake
 BuildRequires:  java-devel
 BuildRequires:  libtool
 BuildRequires:  gcc-c++
+BuildRequires:  ruby-devel
 Requires:       ruby
 Requires:       python
 %if 0%{?rhel} && 0%{?rhel} == 6
@@ -74,6 +75,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_libdir}/libwillcrash.so*
 # Java runtime requires unversioned library
 %{_libdir}/libwilljavasegfault.so*
+%{ruby_vendorlibdir}/will_crash.rb
 
 %changelog
 * Fri Dec 05 2014 Richard Marko <rmarko@fedoraproject.org> - 0.9-3
