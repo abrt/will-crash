@@ -22,6 +22,9 @@ endif
 kmoddir = $(datarootdir)/@PACKAGE@/will_oops_kmod/
 kmod_DATA = will_oops_kmod/Makefile will_oops_kmod/will_oops.c
 
+rubylibdir = $(RUBYLIBDIR)
+rubylib_DATA = will_crash.rb
+
 libwilljavasegfault_la_SOURCES = will_java_segfault.c
 libwilljavasegfault_la_CPPFLAGS = -I$(javahome)/include -I$(javahome)/include/linux
 
@@ -94,6 +97,7 @@ EXTRA_DIST = \
 	will_python_raise \
 	will_python3_raise \
 	will_ruby_raise \
+	will_crash.rb \
 	will_python_sigsegv \
 	will_java_segfault.in \
 	WillRaiseSigSegv.java \

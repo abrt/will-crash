@@ -40,6 +40,12 @@ AC_SUBST([JARDIR], [$with_javadir/willcrash])
 
 AC_MSG_NOTICE([Directory for java files is $JAVADIR])
 
+AC_ARG_WITH([rubylibdir],
+        AS_HELP_STRING([--with-rubydir=DIR],
+            [Directory for ruby libraries]),
+            [], [with_rubylibdir="/usr/share/ruby/vendor_ruby"])
+AC_SUBST([RUBYLIBDIR], [$with_rubylibdir])
+
 AC_PATH_PROGS(JAVAC,javac,,[$javahome/bin])
 AC_PATH_PROGS(JAVA,java,,[$javahome/bin])
 AC_PATH_PROGS(JAR,jar,,[$javahome/bin])

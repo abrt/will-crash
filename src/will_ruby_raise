@@ -1,4 +1,14 @@
 #!/usr/bin/env ruby
 
+# We should be able to run directly from git repo
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
 puts 'Will raise.'
-0/0
+
+module WillModule
+  6.times do
+    7.times do
+      require 'will_crash'
+    end
+  end
+end
