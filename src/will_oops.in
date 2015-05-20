@@ -26,3 +26,6 @@ make
 
 echo "Loading the module ..."
 insmod will_oops.ko
+
+echo "Removing the module..."
+rmmod will_oops
