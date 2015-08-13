@@ -1,6 +1,6 @@
 Name:           will-crash
 Version:        @PACKAGE_VERSION@
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        Set of crashing executables written in various languages
 
 Group:          Development/Tools
@@ -78,8 +78,18 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{ruby_vendorlibdir}/will_crash.rb
 
 %changelog
-* Fri Dec 05 2014 Richard Marko <rmarko@fedoraproject.org> - 0.9-3
-- fix java deps for EL6
+* Thu Aug 13 2015 Richard Marko <rmarko@fedoraproject.org> - 0.10-1
+- Version bump
+- fix will_python_sigsegv for s390x
+- Make it possible to run will_oops.in multiple times in row
+- will_ruby_raise: fancy stacktrace
+- Add --help to will_abort
+
+* Fri Jun 19 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
+* Sat May 02 2015 Kalev Lember <kalevlember@gmail.com> - 0.9-3
+- Rebuilt for GCC 5 C++11 ABI change
 
 * Mon Nov 24 2014 Richard Marko <rmarko@fedoraproject.org> - 0.9-2
 - fix will_java_throw_suppressed availability on RHEL6
