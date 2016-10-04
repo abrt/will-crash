@@ -57,6 +57,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %doc AUTHORS
 %{_bindir}/will_segfault
 %{_bindir}/will_segfault_in_new_pid
+%{_bindir}/will_segfault_threads
 %{_bindir}/will_abort
 %{_bindir}/will_python_raise
 %{_bindir}/will_python_sigsegv
