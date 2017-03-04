@@ -1,5 +1,6 @@
 bin_PROGRAMS = will_segfault \
        will_segfault_in_new_pid \
+       will_segfault_threads \
        will_abort \
        will_cpp_segfault \
        will_stackoverflow
@@ -9,6 +10,8 @@ lib_LTLIBRARIES = libwilljavasegfault.la libwillcrash.la
 will_segfault_SOURCES = will_segfault.c
 will_segfault_LDADD = libwillcrash.la
 will_segfault_CFLAGS = -fno-optimize-sibling-calls
+will_segfault_threads_SOURCES = will_segfault_threads.c
+will_segfault_threads_CFLAGS = -pthread
 will_segfault_in_new_pid_SOURCES = will_segfault_in_new_pid.c
 will_abort_SOURCES = will_abort.c
 will_cpp_segfault_SOURCES = will_cpp_segfault.cc
