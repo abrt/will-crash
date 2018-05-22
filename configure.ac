@@ -31,6 +31,19 @@ AC_ARG_WITH([javaroot],
             [], [with_javaroot=./])
 AC_SUBST([JAVAROOT], [$with_javaroot])
 
+AC_ARG_WITH([python2],
+    AS_HELP_STRING([--with-python2],[build Python2 support (Default is YES)]),
+    [WITH_PYTHON2=$withval],[WITH_PYTHON2="yes"])
+
+[if test $WITH_PYTHON2 = "yes"; then]
+    AM_CONDITIONAL(BUILD_PYTHON2, true)
+    [echo "Building with python2"]
+[else]
+    AM_CONDITIONAL(BUILD_PYTHON2, false)
+    [echo "Building without python2"]
+[fi]
+
+
 AC_ARG_WITH([javadir],
         AS_HELP_STRING([--with-javadir=DIR],
             [Directory for java files]),

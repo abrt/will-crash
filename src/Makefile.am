@@ -39,14 +39,17 @@ libwilljavasegfault_la_CPPFLAGS = -I$(javahome)/include -I$(javahome)/include/li
 
 libwillcrash_la_SOURCES = libwillcrash.c
 
-bin_SCRIPTS = will_python_raise \
-			  will_python3_raise \
+bin_SCRIPTS = will_python3_raise \
 			  will_ruby_raise \
-			  will_python_sigsegv \
 			  will_java_segfault \
 			  will_oops \
 			  will_java_throw \
 			  will_java_throw_remote
+
+if BUILD_PYTHON2
+bin_SCRIPTS += will_python_sigsegv
+bin_SCRIPTS += will_python_raise
+endif
 
 if JAVA_SUPPORTS_SUPPRESSED
 bin_SCRIPTS += will_java_throw_suppressed
@@ -103,11 +106,9 @@ clean-local-check:
 	rm -rf $(ALL_TARGETS) *.class *.jar
 
 EXTRA_DIST = \
-	will_python_raise \
 	will_python3_raise \
 	will_ruby_raise \
 	will_crash.rb \
-	will_python_sigsegv \
 	will_java_segfault.in \
 	WillRaiseSigSegv.java \
 	will_oops.in \
@@ -121,4 +122,9 @@ EXTRA_DIST = \
 if JAVA_SUPPORTS_SUPPRESSED
 EXTRA_DIST += will_java_throw_suppressed.in
 EXTRA_DIST += WontCatchSuppressedException.java
+endif
+
+if BUILD_PYTHON2
+EXTRA_DIST += will_python_sigsegv
+EXTRA_DIST += will_python_raise
 endif
