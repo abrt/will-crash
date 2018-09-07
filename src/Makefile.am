@@ -40,6 +40,7 @@ libwilljavasegfault_la_CPPFLAGS = -I$(javahome)/include -I$(javahome)/include/li
 libwillcrash_la_SOURCES = libwillcrash.c
 
 bin_SCRIPTS = will_python3_raise \
+			  will_python3_sigsegv \
 			  will_ruby_raise \
 			  will_java_segfault \
 			  will_oops \
@@ -107,6 +108,7 @@ clean-local-check:
 
 EXTRA_DIST = \
 	will_python3_raise \
+	will_python3_sigsegv \
 	will_ruby_raise \
 	will_crash.rb \
 	will_java_segfault.in \

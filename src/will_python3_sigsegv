@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+print 'Will segfault python3.'
+import ctypes
+ctypes.string_at(1)
