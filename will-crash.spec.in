@@ -2,13 +2,6 @@
 # http://fedoraproject.org/wiki/Hardened_Packages
 %global _hardened_build 1
 
-%if 0%{?rhel} > 7 || 0%{?fedora} > 28
-# Disable python2 build by default
-%bcond_with python2
-%else
-%bcond_without python2
-%endif
-
 Name:           will-crash
 Version:        @PACKAGE_VERSION@
 Release:        1%{?dist}
@@ -27,9 +20,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  ruby-devel
 Requires:       ruby
 
-%if %{with python2}
-Requires:       python2
-%endif
 %if %{with python3}
 Requires:       python3
 %endif
@@ -57,10 +47,7 @@ like ABRT.
 
 %build
 ./autogen.sh
-%configure \
-%if %{without python2}
-        --without-python2
-%endif # with python2
+%configure
 
 make %{?_smp_mflags}
 
@@ -79,10 +66,6 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_bindir}/will_segfault_in_new_pid
 %{_bindir}/will_segfault_threads
 %{_bindir}/will_abort
-%if %{with python2}
-%{_bindir}/will_python_raise
-%{_bindir}/will_python_sigsegv
-%endif
 %{_bindir}/will_python3_sigsegv
 %{_bindir}/will_python3_raise
 %{_bindir}/will_ruby_raise

@@ -47,11 +47,6 @@ bin_SCRIPTS = will_python3_raise \
 			  will_java_throw \
 			  will_java_throw_remote
 
-if BUILD_PYTHON2
-bin_SCRIPTS += will_python_sigsegv
-bin_SCRIPTS += will_python_raise
-endif
-
 if JAVA_SUPPORTS_SUPPRESSED
 bin_SCRIPTS += will_java_throw_suppressed
 endif
@@ -124,9 +119,4 @@ EXTRA_DIST = \
 if JAVA_SUPPORTS_SUPPRESSED
 EXTRA_DIST += will_java_throw_suppressed.in
 EXTRA_DIST += WontCatchSuppressedException.java
-endif
-
-if BUILD_PYTHON2
-EXTRA_DIST += will_python_sigsegv
-EXTRA_DIST += will_python_raise
 endif
