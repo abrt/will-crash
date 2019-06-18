@@ -20,22 +20,10 @@ BuildRequires:  gcc-c++
 BuildRequires:  ruby-devel
 Requires:       ruby
 
-%if %{with python3}
 Requires:       python3
-%endif
 
-%if 0%{?rhel} && 0%{?rhel} == 6
-Requires:       java-1.8.0-openjdk-headless
-Requires:       jpackage-utils
-%else
 Requires:       java-headless >= 1.7.0.0
 Requires:       javapackages-tools
-%endif
-
-# Don't require python3 for el6/el7, exclude ppc64 due to missing java
-%if 0%{?rhel} && 0%{?rhel} < 8
-ExcludeArch:    ppc64
-%endif
 
 %description
 The main purpose of this project is to provide sample
