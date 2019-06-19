@@ -53,15 +53,4 @@ AC_PATH_PROGS(JAR,jar,,[$javahome/bin])
 JARFLAGS=cvf
 AC_SUBST(JARFLAGS)
 
-JAVA_VER=(`"$JAVA" -version 2>&1 | awk 'BEGIN { FS="[[\".]]" } /^.*version "(.*)\.(.*)\.(.*)"/ { print $2, $3, $4 }'`)
-[echo "$JAVA"]
-[echo "Java version ${JAVA_VER[@]}"]
-[if test ${JAVA_VER[0]} -gt 1 -o ${JAVA_VER[1]} -gt 6; then]
-    AM_CONDITIONAL(JAVA_SUPPORTS_SUPPRESSED, true)
-    [echo "Java supports Suppressed exceptions"]
-[else]
-    AM_CONDITIONAL(JAVA_SUPPORTS_SUPPRESSED, false)
-    [echo "Java does NOT support Suppressed exceptions"]
-[fi]
-
 AC_OUTPUT
