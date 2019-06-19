@@ -10,5 +10,3 @@ git clean -fdx -e releasing
 git archive --format tar \
   --prefix will-crash-${VER}/ \
   --output will-crash-${VER}.tar.gz HEAD
-
-scp will-crash-${VER}.tar.gz 48.io:sources/will-crash/
