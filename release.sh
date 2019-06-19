@@ -1,4 +1,4 @@
-VER="0.$(( $( cat VERSION | cut -d\. -f 2 ) + 1 ))"
+VER="0.$(( $( cut -d\. -f 2 VERSION ) + 1 ))"
 echo "Releasing ${VER}"
 
 echo ${VER} > VERSION
