@@ -1,4 +1,4 @@
-VER="0.$(( $( cat VERSION | cut -d\. -f 2 ) + 1 ))"
+VER="0.$(( $( cut -d\. -f 2 VERSION ) + 1 ))"
 echo "Releasing ${VER}"
 
 echo ${VER} > VERSION
@@ -10,5 +10,3 @@ git clean -fdx -e releasing
 git archive --format tar \
   --prefix will-crash-${VER}/ \
   --output will-crash-${VER}.tar.gz HEAD
-
-scp will-crash-${VER}.tar.gz 48.io:sources/will-crash/
