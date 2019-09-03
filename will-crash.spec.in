@@ -37,12 +37,12 @@ like ABRT.
 ./autogen.sh
 %configure
 
-make %{?_smp_mflags}
+%make_build
 
 %install
-mkdir -p $RPM_BUILD_ROOT/%{_datadir}/java
+mkdir -p %{buildroot}%{_datadir}/java
 
-make install DESTDIR=%{buildroot}
+%make_install
 # no devel package -> no *.so links to versioned libraries needed
 find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 
