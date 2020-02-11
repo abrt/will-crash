@@ -14,7 +14,5 @@ More examples are welcome.
 
 Installation
 -------------
-- ./autogen.sh
-- ./configure
-- make
-- make install
+- meson build
+- ninja -C build install
