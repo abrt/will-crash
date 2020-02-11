@@ -1,0 +1,2 @@
+option('javadir', type: 'string', value: 'share/java')
+option('_java_home', type: 'string', value: '/etc/alternatives/java_sdk')
