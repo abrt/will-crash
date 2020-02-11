@@ -70,7 +70,7 @@ void recursive(int i)
 static void break_link_map()
 {
     puts("Overwriting link_map.");
-    _r_debug.r_map->l_next = 0x1337BEEF;
+    _r_debug.r_map->l_next = (struct link_map *)0x1337BEEF;
     _r_debug.r_map->l_name = "invalid";
 }
 
