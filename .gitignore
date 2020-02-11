@@ -3,4 +3,4 @@ dist
 src/will_java_segfault
 
 /build/*
-/will-crash.spec
+/.tito/**/__pycache__/
