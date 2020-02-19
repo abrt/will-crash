@@ -1,2 +1,2 @@
 #!/usr/bin/env perl
-kill 11,$$
+kill 'SEGV',$$
