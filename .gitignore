@@ -1,6 +1,2 @@
-*.class
-dist
-src/will_java_segfault
-
-/build/*
+/build/
 /.tito/**/__pycache__/
