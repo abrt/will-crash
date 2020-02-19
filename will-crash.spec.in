@@ -18,10 +18,10 @@ BuildRequires:  java-devel
 BuildRequires:  libtool
 BuildRequires:  gcc-c++
 BuildRequires:  ruby-devel
+
 Requires:       ruby
-
+Requires:       perl
 Requires:       python3
-
 Requires:       java-headless >= 1.7.0.0
 Requires:       javapackages-tools
 
@@ -54,6 +54,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 %{_bindir}/will_segfault_in_new_pid
 %{_bindir}/will_segfault_threads
 %{_bindir}/will_abort
+%{_bindir}/will_perl_sigsegv
 %{_bindir}/will_python3_sigsegv
 %{_bindir}/will_python3_raise
 %{_bindir}/will_ruby_raise
