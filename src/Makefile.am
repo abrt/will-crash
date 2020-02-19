@@ -35,14 +35,16 @@ libwilljavasegfault_la_CPPFLAGS = -I$(javahome)/include -I$(javahome)/include/li
 
 libwillcrash_la_SOURCES = libwillcrash.c
 
-bin_SCRIPTS = will_python3_raise \
-			  will_python3_sigsegv \
-			  will_ruby_raise \
-			  will_java_segfault \
-			  will_oops \
-			  will_java_throw \
-			  will_java_throw_remote \
-			  will_java_throw_suppressed
+bin_SCRIPTS = \
+	will_perl_sigsegv \
+	will_python3_raise \
+	will_python3_sigsegv \
+	will_ruby_raise \
+	will_java_segfault \
+	will_oops \
+	will_java_throw \
+	will_java_throw_remote \
+	will_java_throw_suppressed
 
 will_java_segfault: will_java_segfault.in
 	sed -e s,\@JAVADIR\@,\"$(JAVADIR)\",g \
@@ -87,6 +89,7 @@ clean-local-check:
 	rm -rf $(ALL_TARGETS) *.class *.jar
 
 EXTRA_DIST = \
+	will_perl_sigsegv \
 	will_python3_raise \
 	will_python3_sigsegv \
 	will_ruby_raise \
