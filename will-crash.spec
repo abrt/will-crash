@@ -66,8 +66,8 @@ like ABRT.
 %{_datadir}/java/willcrash/willsuppressed.jar
 %{_datadir}/java/willcrash/willuncaught.jar
 %{_datadir}/will-crash/*
-%{_libdir}/libwillcrash.so*
-%{_libdir}/libwilljavasegfault.so*
+%{_libdir}/libwillcrash.so
+%{_libdir}/libwilljavasegfault.so
 %{ruby_vendorlibdir}/will_crash.rb
 
 %changelog
