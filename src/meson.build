@@ -1,5 +1,6 @@
 libwillcrash = shared_library('willcrash', 'libwillcrash.c',
   install: true,
+  soversion: '0',
 )
 libwill_java_segfault = shared_library('willjavasegfault', 'will_java_segfault.c',
   c_args: [
@@ -7,6 +8,7 @@ libwill_java_segfault = shared_library('willjavasegfault', 'will_java_segfault.c
     '-I@0@'.format(join_paths(get_option('_java_home'), 'include', 'linux')),
   ],
   install: true,
+  soversion: '0',
 )
 
 executable('will_segfault', 'will_segfault.c',
