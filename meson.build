@@ -17,6 +17,9 @@ datadir = get_option('datadir')
 jardir = 'willcrash'
 javadir = get_option('javadir')
 kmoddir = join_paths(datadir, meson.project_name())
+libdir = get_option('libdir')
+prefix = get_option('prefix')
+privlibdir = join_paths(libdir, meson.project_name())
 vendordir = ruby.get_pkgconfig_variable('vendordir')
 
 tito = find_program('tito',

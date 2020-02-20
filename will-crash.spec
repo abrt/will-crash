@@ -66,8 +66,12 @@ like ABRT.
 %{_datadir}/java/willcrash/willsuppressed.jar
 %{_datadir}/java/willcrash/willuncaught.jar
 %{_datadir}/will-crash/*
-%{_libdir}/libwillcrash.so
-%{_libdir}/libwilljavasegfault.so
+%{_libdir}/%{name}/libwillcrash.so
+# There’s no way to set the rpath in Java, so it will either look in whatever
+# path it does or we have to use System.load(), which takes a path to a library,
+# but then you need to guess the extension, which is not portable (though doesn’t
+# matter here per se, it’s still not desirable to write hacks).
+%{_libdir}/libwilljavasegfault.so*
 %{ruby_vendorlibdir}/will_crash.rb
 
 %changelog

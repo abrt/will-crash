@@ -1,17 +1,20 @@
 libwillcrash = shared_library('willcrash', 'libwillcrash.c',
   install: true,
+  install_dir: join_paths(libdir, meson.project_name()),
 )
-libwill_java_segfault = shared_library('willjavasegfault', 'will_java_segfault.c',
+shared_library('willjavasegfault', 'will_java_segfault.c',
   c_args: [
     '-I@0@'.format(join_paths(get_option('_java_home'), 'include')),
     '-I@0@'.format(join_paths(get_option('_java_home'), 'include', 'linux')),
   ],
   install: true,
+  soversion: '0',
 )
 
 executable('will_segfault', 'will_segfault.c',
   link_with: libwillcrash,
   install: true,
+  install_rpath: join_paths(prefix, privlibdir),
 )
 executable('will_segfault_in_new_pid', 'will_segfault_in_new_pid.c',
   c_args: cc.get_supported_arguments([
