@@ -1,18 +1,19 @@
-specfile_path: will-crash.spec
+specfile_path: 'will-crash.spec'
 synced_files:
-  - .packit.yml
-  - will-crash.spec
-upstream_package_name: will-crash
-upstream_project_url: https://github.com/abrt/will-crash
-downstream_package_name: will-crash
+  - '.packit.yml'
+  - 'will-crash.spec'
+upstream_package_name: 'will-crash'
+upstream_project_url: 'https://github.com/abrt/will-crash'
+upstream_tag_template: 'v{version}'
+downstream_package_name: 'will-crash'
 jobs:
-- job: propose_downstream
-  trigger: release
+- job: 'propose_downstream'
+  trigger: 'release'
   metadata:
-    dist-git-branch: fedora-all
-- job: copr_build
-  trigger: pull_request
+    dist-git-branch: 'fedora-all'
+- job: 'copr_build'
+  trigger: 'pull_request'
   metadata:
     targets:
-    - epel-8
-    - fedora-all
+    - 'epel-8'
+    - 'fedora-all'
