@@ -66,40 +66,50 @@ java_configuration_will_throw_remote.set_quoted('JARUNCAUGHT', join_paths(javadi
 java_configuration_will_throw_suppressed = configuration_data()
 java_configuration_will_throw_suppressed.set_quoted('JAR', join_paths(jardir, 'willsuppressed.jar'))
 
+kmod_configuration = configuration_data()
+kmod_configuration.set_quoted('KMODSRC', kmoddir)
+
+generated_scripts = [
+  {
+    'script': 'will_java_segfault',
+    'configuration': java_configuration,
+  },
+  {
+    'script': 'will_java_throw',
+    'configuration': java_configuration_will_throw,
+  },
+  {
+    'script': 'will_java_throw_remote',
+    'configuration': java_configuration_will_throw_remote,
+  },
+  {
+    'script': 'will_java_throw_suppressed',
+    'configuration': java_configuration_will_throw_suppressed,
+  },
+  {
+    'script': 'will_oops',
+    'configuration': kmod_configuration,
+  },
+]
+
+foreach script : generated_scripts
+  configure_file(
+    configuration: script.get('configuration'),
+    input: '@0@.in'.format(script.get('script')),
+    output: script.get('script'),
+    install: true,
+    install_dir: bindir,
+    install_mode: 'rwxr-xr-x',
+  )
+endforeach
+
 scripts = [
   'will_perl_sigsegv',
   'will_python3_raise',
   'will_python3_sigsegv',
   'will_ruby_raise',
-  configure_file(
-    configuration: java_configuration,
-    input: 'will_java_segfault.in',
-    output: 'will_java_segfault',
-    install: true,
-    install_dir: bindir,
-  ),
-  configure_file(
-    configuration: java_configuration_will_throw,
-    input: 'will_java_throw.in',
-    output: 'will_java_throw',
-    install: true,
-    install_dir: bindir,
-  ),
-  configure_file(
-    configuration: java_configuration_will_throw_remote,
-    input: 'will_java_throw_remote.in',
-    output: 'will_java_throw_remote',
-    install: true,
-    install_dir: bindir,
-  ),
-  configure_file(
-    configuration: java_configuration_will_throw_suppressed,
-    input: 'will_java_throw_suppressed.in',
-    output: 'will_java_throw_suppressed',
-    install: true,
-    install_dir: bindir,
-  ),
 ]
+
 install_data(scripts,
   install_dir: get_option('bindir'),
 )
@@ -127,15 +137,4 @@ install_data('will_crash.rb',
 install_subdir('will_oops_kmod',
   install_dir: kmoddir,
   strip_directory: true,
-)
-
-kmod_configuration = configuration_data()
-kmod_configuration.set_quoted('KMODSRC', kmoddir)
-
-configure_file(
-  configuration: kmod_configuration,
-  input: 'will_oops.in',
-  output: 'will_oops',
-  install: true,
-  install_dir: bindir,
 )
