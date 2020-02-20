@@ -1,6 +1,8 @@
-project('will-crash', ['c', 'cpp', 'java',],
-  license: 'GPL3+',
-  version: '0.12',
+project(
+  'will-crash',
+  ['c', 'cpp', 'java'],
+  license : 'GPL3+',
+  version : '0.13'
 )
 
 cc = meson.get_compiler('c')
