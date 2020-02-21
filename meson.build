@@ -2,7 +2,7 @@ project(
   'will-crash',
   ['c', 'cpp', 'java'],
   license : 'GPL3+',
-  version : '0.13.1'
+  version : '0.13.2'
 )
 
 cc = meson.get_compiler('c')
