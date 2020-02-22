@@ -66,6 +66,7 @@ like ABRT.
 %{_datadir}/java/willcrash/willsuppressed.jar
 %{_datadir}/java/willcrash/willuncaught.jar
 %{_datadir}/will-crash/*
+%dir %{_libdir}/%{name}
 %{_libdir}/%{name}/libwillcrash.so
 # There’s no way to set the rpath in Java, so it will either look in whatever
 # path it does or we have to use System.load(), which takes a path to a library,
