@@ -21,7 +21,7 @@ BuildRequires:  ruby-devel
 
 Requires:       java-headless >= 1.7.0.0
 Requires:       javapackages-tools
-Requires:       perl
+Requires:       perl-interpreter
 Requires:       python3
 Requires:       ruby
 
