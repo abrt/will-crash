@@ -70,7 +70,7 @@ java_configuration_will_throw_suppressed = configuration_data()
 java_configuration_will_throw_suppressed.set_quoted('JAR', join_paths(jardir, 'willsuppressed.jar'))
 
 kmod_configuration = configuration_data()
-kmod_configuration.set_quoted('KMODSRC', kmoddir)
+kmod_configuration.set_quoted('KMODSRC', join_paths(prefix, kmoddir))
 
 generated_scripts = [
   {
