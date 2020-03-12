@@ -40,21 +40,28 @@ executable('will_stackoverflow', 'will_stackoverflow.c',
   install: true,
 )
 
-jar('willremoteloader', 'WontCatchRemoteException.java',
-  main_class: 'WontCatchRemoteException',
-  install: true,
-  install_dir: join_paths(javadir, jardir),
-)
-jar('willsuppressed', 'WontCatchSuppressedException.java',
-  main_class: 'WontCatchSuppressedException',
-  install: true,
-  install_dir: join_paths(javadir, jardir),
-)
-jar('willuncaught', 'WontCatchNullPointerException.java',
-  main_class: 'WontCatchNullPointerException',
-  install: true,
-  install_dir: join_paths(javadir, jardir),
-)
+jars = [
+  {
+    'name': 'willremoteloader',
+    'main_class': 'WontCatchRemoteException',
+  },
+  {
+    'name': 'willsuppressed',
+    'main_class': 'WontCatchSuppressedException',
+  },
+  {
+    'name': 'willuncaught',
+    'main_class': 'WontCatchNullPointerException',
+  },
+]
+
+foreach _jar : jars
+  jar(_jar.get('name'), '@0@.java'.format(_jar.get('main_class')),
+    main_class: _jar.get('main_class'),
+    install: true,
+    install_dir: join_paths(javadir, jardir)
+  )
+endforeach
 
 java_configuration = configuration_data()
 java_configuration.set_quoted('JAVADIR', javadir)
