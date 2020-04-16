@@ -2,6 +2,7 @@ project(
   'will-crash',
   ['c', 'cpp', 'java'],
   license : 'GPL3+',
+  meson_version : '>= 0.50.0',
   version : '0.13.2'
 )
 
