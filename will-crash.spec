@@ -14,7 +14,6 @@ Source0:        https://github.com/abrt/%{name}/archive/v%{version}/%{name}-%{ve
 
 BuildRequires:  java-devel
 BuildRequires:  javapackages-tools
-BuildRequires:  libtool
 BuildRequires:  meson >= 0.50.0
 BuildRequires:  gcc-c++
 BuildRequires:  ruby-devel
