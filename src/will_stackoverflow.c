@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+__attribute__((optimize((0))))
+__attribute__((optnone))
 int f()
 {
     return f();
