@@ -3,7 +3,7 @@
 %global _hardened_build 1
 
 Name:           will-crash
-Version:        0.13.2
+Version:        0.13.3
 Release:        1%{?dist}
 Summary:        Set of crashing executables written in various languages
 
