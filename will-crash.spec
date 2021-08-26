@@ -23,6 +23,7 @@ Requires:       javapackages-tools
 Requires:       perl-interpreter
 Requires:       python3
 Requires:       ruby
+Recommends:     kernel-devel
 
 %description
 The main purpose of this project is to provide sample
