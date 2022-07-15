@@ -16,7 +16,7 @@ Summary:        Set of crashing executables written in various languages
 Group:          Development/Tools
 License:        GPLv3
 URL:            https://github.com/abrt/will-crash
-Source0:        https://github.com/abrt/%{name}/releases/download/%{version}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/abrt/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 
 %if %{JAVA}
 BuildRequires:  java-devel
