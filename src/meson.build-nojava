@@ -1,0 +1,74 @@
+libwillcrash = shared_library('willcrash', 'libwillcrash.c',
+  install: true,
+  install_dir: join_paths(libdir, meson.project_name()),
+)
+
+executable('will_segfault', 'will_segfault.c',
+  link_with: libwillcrash,
+  install: true,
+  install_rpath: join_paths(prefix, privlibdir),
+)
+executable('will_segfault_in_new_pid', 'will_segfault_in_new_pid.c',
+  c_args: cc.get_supported_arguments([
+    '-Wno-nonnull',
+  ]),
+  install: true,
+)
+executable('will_segfault_threads', 'will_segfault_threads.c',
+  c_args: cc.get_supported_arguments([
+    '-Wno-nonnull',
+    '-Wno-return-type',
+  ]),
+  dependencies: threads,
+  install: true,
+)
+executable('will_abort', 'will_abort.c',
+  install: true,
+)
+executable('will_cpp_segfault', 'will_cpp_segfault.cc',
+  install: true,
+)
+executable('will_stackoverflow', 'will_stackoverflow.c',
+  install: true,
+)
+
+kmod_configuration = configuration_data()
+kmod_configuration.set_quoted('KMODSRC', join_paths(prefix, kmoddir))
+
+generated_scripts = [
+  {
+    'script': 'will_oops',
+    'configuration': kmod_configuration,
+  },
+]
+
+foreach script : generated_scripts
+  configure_file(
+    configuration: script.get('configuration'),
+    input: '@0@.in'.format(script.get('script')),
+    output: script.get('script'),
+    install: true,
+    install_dir: bindir,
+    install_mode: 'rwxr-xr-x',
+  )
+endforeach
+
+scripts = [
+  'will_perl_sigsegv',
+  'will_python3_raise',
+  'will_python3_sigsegv',
+  'will_ruby_raise',
+]
+
+install_data(scripts,
+  install_dir: get_option('bindir'),
+)
+
+install_data('will_crash.rb',
+  install_dir: vendordir,
+)
+
+install_subdir('will_oops_kmod',
+  install_dir: kmoddir,
+  strip_directory: true,
+)
