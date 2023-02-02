@@ -14,7 +14,7 @@ Release:        1%{?dist}
 Summary:        Set of crashing executables written in various languages
 
 Group:          Development/Tools
-License:        GPLv3
+License:        GPL-3.0-only
 URL:            https://github.com/abrt/will-crash
 Source0:        https://github.com/abrt/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 
